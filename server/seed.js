@@ -1,16 +1,11 @@
 import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import bcrypt from 'bcryptjs';
 import connectDB from './config/db.js';
 import User from './models/User.js';
 import Project from './models/Project.js';
 import Content from './models/Content.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-dotenv.config({ path: path.join(__dirname, '.env') });
+dotenv.config();
 
 const sampleProjects = [
   {

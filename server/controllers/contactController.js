@@ -6,17 +6,8 @@ export const sendMessage = async (req, res, next) => {
     if (!name || !email || !message) {
       return res.status(400).json({ message: 'All fields are required' });
     }
-   const savedMessage = await ContactMessage.create({
-  name,
-  email,
-  message,
-});
-
-console.log("=== NEW CONTACT MESSAGE ===");
-console.log(savedMessage);
-console.log("===========================");
-
-res.status(201).json(savedMessage);
+    const savedMessage = await ContactMessage.create({ name, email, message });
+    res.status(201).json(savedMessage);
   } catch (error) {
     next(error);
   }
