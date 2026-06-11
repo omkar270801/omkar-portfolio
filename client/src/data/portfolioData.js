@@ -94,7 +94,7 @@ export const projects = [
     description: 'A healthcare prediction system that uses machine learning to identify cancer risk and support early diagnostics.',
     features: ['Predictive modeling', 'Data-driven insights', 'Healthcare-ready workflow'],
     tech: ['Python', 'Scikit-learn', 'Machine Learning'],
-    image: 'https://images.unsplash.com/photo-1581093448799-1c0f8e3a7f00?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/breast-cancer-detection.jpg',
     category: 'Backend',
     github: 'https://github.com/omkarchandorkar/breast-cancer-detection',
     demo: 'https://linkedin.com/in/omkar-chandorkar-4ab81622a',

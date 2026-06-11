@@ -31,7 +31,19 @@ A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Fr
    ```bash
    npm run dev
    ```
-5. Open the app at `http://localhost:5173`.
+5. Open the app at `http://omkarchandorkar-portfolio.local`.
+
+> Optional: if you want a custom local host name, add this to your Windows hosts file (`C:\Windows\System32\drivers\etc\hosts`):
+>
+> ```text
+> 127.0.0.1 omkarchandorkar-portfolio.local
+> ```
+>
+> Then you can open:
+>
+> ```text
+> http://omkarchandorkar-portfolio.local
+> ```
 
 ## Backend
 - API base: `http://localhost:5000/api`
