@@ -7,6 +7,7 @@ function AdminPage() {
   const [messages, setMessages] = useState([]);
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   const headers = {
     Authorization: token ? `Bearer ${token}` : '',
@@ -16,8 +17,8 @@ function AdminPage() {
   useEffect(() => {
     if (!token) return;
     Promise.all([
-      fetch(`${import.meta.env.VITE_API_URL}/messages`, { headers }),
-      fetch(`${import.meta.env.VITE_API_URL}/projects`, { headers }),
+      fetch(`${API_URL}/messages`, { headers }),
+      fetch(`${API_URL}/projects`, { headers }),
     ])
       .then(async ([messagesRes, projectsRes]) => {
         const messagesData = await messagesRes.json();
@@ -29,7 +30,7 @@ function AdminPage() {
   }, [token]);
 
   const handleDeleteMessage = async (id) => {
-    await fetch(`${import.meta.env.VITE_API_URL}/messages/${id}`, { method: 'DELETE', headers });
+    await fetch(`${API_URL}/messages/${id}`, { method: 'DELETE', headers });
     setMessages(messages.filter((message) => message._id !== id));
   };
 
@@ -63,7 +64,7 @@ function AdminPage() {
                       </div>
                       <button
                         onClick={async () => {
-                          await fetch(`${import.meta.env.VITE_API_URL}/projects/${project._id}`, {
+                          await fetch(`${API_URL}/projects/${project._id}`, {
                             method: 'DELETE',
                             headers,
                           });
