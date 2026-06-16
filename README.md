@@ -64,6 +64,8 @@ From `server`:
 npm run seed
 ```
 
+Make sure `server/.env` contains `ADMIN_EMAIL` and `ADMIN_PASSWORD` before running seed. The login route uses those credentials to create or update the admin user.
+
 ## Folder structure
 - `client/`: React frontend
 - `server/`: Express backend

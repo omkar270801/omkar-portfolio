@@ -61,7 +61,9 @@ export const projects = [
     description: 'An inventory management application built for broadcast operations, improving data accuracy and asset visibility through modern dashboards and workflows.',
     features: ['Inventory tracking', 'Secure asset categorization', 'Fast search and filtering'],
     tech: ['React', 'Node.js', 'Express', 'MongoDB'],
-    image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80',
+    // Use a local image for the DD Stocker project. Place your screenshot at:
+    // client/public/images/dd-stocker.jpg
+    image: '/images/dd-stocker.jpg',
     category: 'Full Stack',
     github: 'https://github.com/omkarchandorkar/dd-stocker',
     demo: 'https://linkedin.com/in/omkar-chandorkar-4ab81622a',

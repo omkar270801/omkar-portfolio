@@ -54,12 +54,18 @@ const sampleContent = {
 const createSeed = async () => {
   await connectDB();
 
-  const existingUser = await User.findOne({ email: process.env.ADMIN_EMAIL });
-  if (!existingUser) {
-    const password = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
-    await User.create({ email: process.env.ADMIN_EMAIL, password, role: 'admin' });
-    console.log('Admin user created');
+  if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
+    console.error('Missing ADMIN_EMAIL or ADMIN_PASSWORD in server/.env. Please set the values before running the seed script.');
+    process.exit(1);
   }
+
+  const password = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
+  await User.findOneAndUpdate(
+    { role: 'admin' },
+    { email: process.env.ADMIN_EMAIL, password, role: 'admin' },
+    { upsert: true, new: true }
+  );
+  console.log('Admin user created or updated');
 
   await Project.deleteMany();
   await Project.insertMany(sampleProjects);
