@@ -7,6 +7,7 @@ function AdminPage() {
   const [messages, setMessages] = useState([]);
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   const headers = {
@@ -16,15 +17,34 @@ function AdminPage() {
 
   useEffect(() => {
     if (!token) return;
+
+    setLoading(true);
+    setError('');
+
     Promise.all([
       fetch(`${API_URL}/messages`, { headers }),
       fetch(`${API_URL}/projects`, { headers }),
     ])
       .then(async ([messagesRes, projectsRes]) => {
-        const messagesData = await messagesRes.json();
-        const projectsData = await projectsRes.json();
-        if (messagesRes.ok) setMessages(messagesData);
-        if (projectsRes.ok) setProjects(projectsData);
+        if (!messagesRes.ok) {
+          const errorBody = await messagesRes.json().catch(() => null);
+          throw new Error(errorBody?.message || 'Failed to fetch messages');
+        }
+        if (!projectsRes.ok) {
+          const errorBody = await projectsRes.json().catch(() => null);
+          throw new Error(errorBody?.message || 'Failed to fetch projects');
+        }
+
+        const [messagesData, projectsData] = await Promise.all([
+          messagesRes.json(),
+          projectsRes.json(),
+        ]);
+
+        setMessages(messagesData);
+        setProjects(projectsData);
+      })
+      .catch((fetchError) => {
+        setError(fetchError.message || 'Failed to fetch admin data');
       })
       .finally(() => setLoading(false));
   }, [token]);

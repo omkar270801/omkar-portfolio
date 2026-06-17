@@ -2,7 +2,11 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import User from '../models/User.js';
 
-const generateToken = (user) => jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+const generateToken = (user) => jwt.sign(
+  { id: user._id, email: user.email, role: user.role },
+  process.env.JWT_SECRET,
+  { expiresIn: '7d' }
+);
 
 export const login = async (req, res, next) => {
   try {
@@ -17,8 +21,12 @@ export const login = async (req, res, next) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: 'Invalid email or password' });
 
+    if (user.role !== 'admin') {
+      return res.status(403).json({ message: 'Admin access required' });
+    }
+
     const token = generateToken(user);
-    res.json({ token });
+    res.json({ token, user: { email: user.email, role: user.role } });
   } catch (error) {
     next(error);
   }

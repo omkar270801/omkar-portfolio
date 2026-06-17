@@ -35,7 +35,7 @@ function LoginPage() {
         throw new Error(errorMessage);
       }
       if (!data || !data.token) throw new Error('Authentication failed. No token returned.');
-      login(data.token);
+      login(data.token, data.user);
     } catch (err) {
       setError(err.message || 'Login failed');
     }

@@ -16,9 +16,10 @@ export function AuthProvider({ children }) {
     }
   }, [token]);
 
-  const login = (jwt) => {
+  const login = (jwt, userData = {}) => {
     localStorage.setItem('portfolio_token', jwt);
     setToken(jwt);
+    setUser({ authenticated: true, ...userData });
     navigate('/admin');
   };
 
