@@ -21,12 +21,22 @@ A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Fr
 - Database: MongoDB
 
 ## Setup
+<<<<<<< HEAD
 1. Configure the root `.env` file with your MongoDB, JWT, admin, and optional Cloudinary settings.
 2. Install dependencies:
    ```bash
    npm run install:all
    ```
 3. Start both frontend and backend:
+=======
+1. Copy `.env.example` to `.env` in the root, `server/.env`, and `client/.env`.
+2. Configure `MONGO_URI`, `JWT_SECRET`, and optional `CLOUDINARY_URL` in `server/.env`, and set `VITE_API_URL` in `client/.env`.
+3. Install dependencies:
+   ```bash
+   npm run install:all
+   ```
+4. Start both frontend and backend:
+>>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
    ```bash
    npm run dev
    ```

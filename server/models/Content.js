@@ -10,12 +10,15 @@ const contentSchema = new mongoose.Schema({
     summary: String,
     goals: String,
   },
+<<<<<<< HEAD
   timeline: [{
     date: String,
     title: String,
     organization: String,
     details: String,
   }],
+=======
+>>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
   services: [{ title: String, description: String }],
   updatedAt: Date,
 }, { timestamps: true });
