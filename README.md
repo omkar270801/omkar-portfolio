@@ -1,0 +1,74 @@
+# Premium Developer Portfolio
+
+A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Framer Motion, Express, MongoDB, and JWT authentication.
+
+## Features
+- Dark mode by default
+- Glassmorphism UI with gradient accents
+- Smooth animations and hover effects
+- Responsive design for mobile, tablet, desktop
+- Contact form connected to backend API
+- Admin dashboard for managing projects and messages
+- Cloudinary file upload support
+- SEO-friendly metadata and lazy loading
+
+## Tech Stack
+- Frontend: React + Vite
+- Styling: Tailwind CSS
+- Animations: Framer Motion
+- Icons: Lucide React
+- Backend: Node.js + Express
+- Database: MongoDB
+
+## Setup
+1. Configure the root `.env` file with your MongoDB, JWT, admin, and optional Cloudinary settings.
+2. Install dependencies:
+   ```bash
+   npm run install:all
+   ```
+3. Start both frontend and backend:
+   ```bash
+   npm run dev
+   ```
+5. Open the app at `http://omkarchandorkar-portfolio.local`.
+
+> Optional: if you want a custom local host name, add this to your Windows hosts file (`C:\Windows\System32\drivers\etc\hosts`):
+>
+> ```text
+> 127.0.0.1 omkarchandorkar-portfolio.local
+> ```
+>
+> Then you can open:
+>
+> ```text
+> http://omkarchandorkar-portfolio.local
+> ```
+
+## Backend
+- API base: `http://localhost:5000/api`
+- Admin login route: `POST /api/auth/login`
+- Contact route: `POST /api/contact`
+- Project management routes: `GET /api/projects`, `POST /api/projects`, `PUT /api/projects/:id`, `DELETE /api/projects/:id`
+- Message management routes: `GET /api/messages`, `DELETE /api/messages/:id`
+
+## Deployment
+- Build frontend with `npm run build --prefix client`
+- Serve `client/dist` with a static server or CDN
+- Deploy backend to a Node-compatible host with `server/index.js`
+- Set environment variables on deployment
+
+## Seed data
+From `server`:
+```bash
+npm run seed
+```
+
+Make sure `server/.env` contains `ADMIN_EMAIL` and `ADMIN_PASSWORD` before running seed. The login route uses those credentials to create or update the admin user.
+
+## Folder structure
+- `client/`: React frontend
+- `server/`: Express backend
+
+## Notes
+- Use the `Admin Dashboard` route under `/admin` after login.
+- Use the contact form to store messages in MongoDB.
