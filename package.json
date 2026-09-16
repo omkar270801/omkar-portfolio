@@ -4,11 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "install:all": "npm install && npm install --prefix client && npm install --prefix server",
-<<<<<<< HEAD
     "dev": "node scripts/run-dev.js",
-=======
-    "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
     "build": "npm run build --prefix client",
     "start": "node server/index.js"
   },
