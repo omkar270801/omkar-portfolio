@@ -1,21 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../components/AuthProvider';
-<<<<<<< HEAD
 import { timeline as defaultTimeline } from '../data/portfolioData';
-=======
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
 import { Navigate } from 'react-router-dom';
 
 function AdminPage() {
   const { token, logout } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
   const [projects, setProjects] = useState([]);
-<<<<<<< HEAD
   const [careerTimeline, setCareerTimeline] = useState(defaultTimeline);
   const [timelineSaving, setTimelineSaving] = useState(false);
   const [timelineStatus, setTimelineStatus] = useState('');
-=======
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -34,14 +28,9 @@ function AdminPage() {
     Promise.all([
       fetch(`${API_URL}/messages`, { headers }),
       fetch(`${API_URL}/projects`, { headers }),
-<<<<<<< HEAD
       fetch(`${API_URL}/content`),
     ])
       .then(async ([messagesRes, projectsRes, contentRes]) => {
-=======
-    ])
-      .then(async ([messagesRes, projectsRes]) => {
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
         if (!messagesRes.ok) {
           const errorBody = await messagesRes.json().catch(() => null);
           throw new Error(errorBody?.message || 'Failed to fetch messages');
@@ -50,7 +39,6 @@ function AdminPage() {
           const errorBody = await projectsRes.json().catch(() => null);
           throw new Error(errorBody?.message || 'Failed to fetch projects');
         }
-<<<<<<< HEAD
         if (!contentRes.ok) {
           const errorBody = await contentRes.json().catch(() => null);
           throw new Error(errorBody?.message || 'Failed to fetch portfolio content');
@@ -60,20 +48,11 @@ function AdminPage() {
           messagesRes.json(),
           projectsRes.json(),
           contentRes.json(),
-=======
-
-        const [messagesData, projectsData] = await Promise.all([
-          messagesRes.json(),
-          projectsRes.json(),
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
         ]);
 
         setMessages(messagesData);
         setProjects(projectsData);
-<<<<<<< HEAD
         if (Array.isArray(contentData.timeline)) setCareerTimeline(contentData.timeline);
-=======
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
       })
       .catch((fetchError) => {
         setError(fetchError.message || 'Failed to fetch admin data');
@@ -81,7 +60,6 @@ function AdminPage() {
       .finally(() => setLoading(false));
   }, [token]);
 
-<<<<<<< HEAD
   const updateTimelineItem = (index, field, value) => {
     setCareerTimeline((currentTimeline) => currentTimeline.map((item, itemIndex) => (
       itemIndex === index ? { ...item, [field]: value } : item
@@ -122,8 +100,6 @@ function AdminPage() {
     }
   };
 
-=======
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
   const handleDeleteMessage = async (id) => {
     await fetch(`${API_URL}/messages/${id}`, { method: 'DELETE', headers });
     setMessages(messages.filter((message) => message._id !== id));
@@ -143,7 +119,6 @@ function AdminPage() {
         </div>
 
         <section className="grid gap-6 lg:grid-cols-2">
-<<<<<<< HEAD
           <div className="glass rounded-3xl border border-slate-700 p-6 shadow-xl lg:col-span-2">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
@@ -195,8 +170,6 @@ function AdminPage() {
             {timelineStatus && <p className={`mt-4 text-sm ${timelineStatus.includes('saved') ? 'text-emerald-400' : 'text-rose-400'}`}>{timelineStatus}</p>}
           </div>
 
-=======
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
           <div className="glass rounded-3xl border border-slate-700 p-6 shadow-xl">
             <h2 className="text-xl font-semibold text-white">Project Management</h2>
             <p className="mt-2 text-slate-400">Use the backend API to keep your portfolio projects up to date.</p>
