@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../components/AuthProvider';
 import { timeline as defaultTimeline } from '../data/portfolioData';
 import { Navigate } from 'react-router-dom';
+import { API_URL } from '../config/api';
 
 function AdminPage() {
   const { token, logout } = useContext(AuthContext);
@@ -12,7 +13,6 @@ function AdminPage() {
   const [timelineStatus, setTimelineStatus] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   const headers = {
     Authorization: token ? `Bearer ${token}` : '',

@@ -49,6 +49,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://127.0.0.1:5173',
   'http://omkarchandorkar-portfolio.local',
+  'https://omkar-portfolio-clfv.vercel.app',
 ].filter(Boolean);
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json({ limit: '10mb' }));

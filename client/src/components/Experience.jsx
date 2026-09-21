@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { timeline } from '../data/portfolioData';
+import { API_URL } from '../config/api';
 
 function Experience() {
   const [careerTimeline, setCareerTimeline] = useState(timeline);
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   useEffect(() => {
     fetch(`${API_URL}/content`)
