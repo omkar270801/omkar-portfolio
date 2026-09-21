@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 import { useEffect, useState } from 'react';
-=======
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
 import { motion } from 'framer-motion';
 import { timeline } from '../data/portfolioData';
 
 function Experience() {
-<<<<<<< HEAD
   const [careerTimeline, setCareerTimeline] = useState(timeline);
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -23,8 +19,6 @@ function Experience() {
       });
   }, [API_URL]);
 
-=======
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
   return (
     <section id="experience" className="mb-24">
       <div className="mb-12">
@@ -34,13 +28,8 @@ function Experience() {
       <div className="relative overflow-hidden rounded-[2rem] border border-slate-700 bg-slate-950/70 p-8 shadow-xl">
         <div className="absolute left-6 top-0 h-full w-1 bg-gradient-to-b from-cyan-400 to-violet-500 opacity-50" />
         <div className="space-y-8 pl-12">
-<<<<<<< HEAD
           {careerTimeline.map((item, index) => (
             <motion.div key={item._id || `${item.date}-${item.title}`} initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: index * 0.08 }} className="relative">
-=======
-          {timeline.map((item, index) => (
-            <motion.div key={item.date} initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: index * 0.08 }} className="relative">
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
               <div className="absolute left-[-1.45rem] top-2 h-4 w-4 rounded-full bg-cyan-400 shadow-glow" />
               <p className="text-sm uppercase tracking-[0.3em] text-slate-500">{item.date}</p>
               <h3 className="mt-2 text-2xl font-semibold text-white">{item.title}</h3>

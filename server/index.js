@@ -20,11 +20,7 @@ import errorHandler from './middleware/errorHandler.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-<<<<<<< HEAD
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
-=======
-dotenv.config({ path: path.join(__dirname, '.env') });
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -51,11 +47,8 @@ app.use(helmet());
 const allowedOrigins = [
   process.env.CLIENT_ORIGIN,
   'http://localhost:5173',
-<<<<<<< HEAD
   'http://127.0.0.1:5173',
-=======
   'http://omkarchandorkar-portfolio.local',
->>>>>>> 87a19f2c47a81131568efa48f4f43f1e63c09003
 ].filter(Boolean);
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json({ limit: '10mb' }));
