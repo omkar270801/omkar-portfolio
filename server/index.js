@@ -51,13 +51,12 @@ const allowedOrigins = [
   'http://omkarchandorkar-portfolio.local',
   'https://omkar-portfolio-murex.vercel.app',
 ].filter(Boolean);
-
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin) || /\.vercel\.app$/.test(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(null, false);
     }
   },
   credentials: true,
