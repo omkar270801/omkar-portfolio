@@ -49,9 +49,19 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://127.0.0.1:5173',
   'http://omkarchandorkar-portfolio.local',
-  'https://omkar-portfolio-clfv.vercel.app',
+  'https://omkar-portfolio-murex.vercel.app',
 ].filter(Boolean);
-app.use(cors({ origin: allowedOrigins, credentials: true }));
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin) || /\.vercel\.app$/.test(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(rateLimit({ windowMs: 1000 * 60, max: 120 }));
