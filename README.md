@@ -8,7 +8,7 @@ A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Fr
 - Smooth animations and hover effects
 - Responsive design for mobile, tablet, desktop
 - Contact form connected to backend API
-- Admin dashboard for managing projects and messages
+- Admin dashboard for managing portfolio content, projects, experience, achievements, and messages
 - Cloudinary file upload support
 - SEO-friendly metadata and lazy loading
 
@@ -31,7 +31,7 @@ A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Fr
    ```bash
    npm run dev
    ```
-5. Open the app at `http://omkarchandorkar-portfolio.local`.
+5. Open the app at `http://localhost:5174`.
 
 > Optional: if you want a custom local host name, add this to your Windows hosts file (`C:\Windows\System32\drivers\etc\hosts`):
 >
@@ -42,7 +42,7 @@ A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Fr
 > Then you can open:
 >
 > ```text
-> http://omkarchandorkar-portfolio.local
+> http://omkarchandorkar-portfolio.local:5174
 > ```
 
 ## Backend
@@ -72,4 +72,5 @@ Make sure `server/.env` contains `ADMIN_EMAIL` and `ADMIN_PASSWORD` before runni
 
 ## Notes
 - Use the `Admin Dashboard` route under `/admin` after login.
+- Edit the main portfolio copy, navigation, contact details, services, and footer in the dashboard's Portfolio Content JSON editor. Projects, career timeline, achievements, and messages have dedicated controls.
 - Use the contact form to store messages in MongoDB.

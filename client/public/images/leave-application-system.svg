@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" role="img" aria-label="Leave management and reporting interface illustration">
+  <rect width="960" height="560" fill="#08111f"/>
+  <rect x="90" y="58" width="780" height="444" rx="24" fill="#0f1b2d" stroke="#24364d" stroke-width="2"/>
+  <circle cx="126" cy="94" r="7" fill="#22d3ee"/><circle cx="151" cy="94" r="7" fill="#334155"/><circle cx="176" cy="94" r="7" fill="#334155"/>
+  <text x="130" y="164" fill="#67e8f9" font-family="Arial,sans-serif" font-size="17" letter-spacing="5">LEAVE MANAGEMENT</text>
+  <text x="130" y="216" fill="#f8fafc" font-family="Arial,sans-serif" font-weight="700" font-size="36">Leave Applications</text>
+  <rect x="130" y="258" width="300" height="180" rx="14" fill="#14243a"/>
+  <text x="158" y="294" fill="#94a3b8" font-family="Arial,sans-serif" font-size="14">AVAILABLE BALANCE</text>
+  <text x="158" y="361" fill="#f8fafc" font-family="Arial,sans-serif" font-weight="700" font-size="56">18</text>
+  <text x="226" y="360" fill="#94a3b8" font-family="Arial,sans-serif" font-size="17">days</text>
+  <rect x="158" y="391" width="238" height="8" rx="4" fill="#26384e"/><rect x="158" y="391" width="168" height="8" rx="4" fill="#22d3ee"/>
+  <rect x="458" y="258" width="364" height="180" rx="14" fill="#14243a"/>
+  <text x="486" y="294" fill="#94a3b8" font-family="Arial,sans-serif" font-size="14">VACATION LEAVE REPORT</text>
+  <path d="M498 393v-43h44v43m19 0v-70h44v70m19 0v-54h44v54" fill="none" stroke="#22d3ee" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M490 408h244" stroke="#475569" stroke-width="2"/>
+</svg>

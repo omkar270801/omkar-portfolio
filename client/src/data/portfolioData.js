@@ -1,5 +1,6 @@
 export const hero = {
   name: 'Omkar Chandorkar',
+  eyebrow: 'Premium digital experiences',
   title: 'AI & Full Stack Developer',
   tagline: 'Building intelligent automation systems and modern web applications for broadcast, industrial, and enterprise workflows.',
   ctas: [
@@ -38,9 +39,9 @@ export const skillCategories = [
     title: 'Database',
     icon: 'Database',
     skills: [
-      { name: 'MongoDB', level: 90 },
-      { name: 'Data Modeling', level: 88 },
-      { name: 'Performance Tuning', level: 85 },
+      { name: 'PostgreSQL', level: 90 },
+      { name: 'MongoDB', level: 88 },
+      { name: 'Microsoft SQL Server', level: 85 },
     ],
   },
   {
@@ -73,7 +74,7 @@ export const projects = [
     title: 'Pravesh Gate Entry',
     description: 'A secure gate entry system designed to automate visitor management and improve access control for broadcast facilities.',
     features: ['Automated entry workflows', 'Visitor authentication', 'Operational analytics'],
-    tech: ['React', 'Node.js', 'MongoDB', 'Express'],
+    tech: ['React', 'Node.js', 'PostgreSQL', 'Express'],
     image: '/images/pravesh.jpg',
     category: 'Full Stack',
     github: 'https://github.com/omkarchandorkar/pravesh-gate-entry',
@@ -100,6 +101,34 @@ export const projects = [
     category: 'Backend',
     github: 'https://github.com/omkarchandorkar/breast-cancer-detection',
     demo: 'https://linkedin.com/in/omkar-chandorkar-4ab81622a',
+  },
+  {
+    id: 'smart-call-letter-generator',
+    title: 'Smart Call Letter Generator',
+    description: 'A web application that automates candidate data processing and streamlines call letter generation.',
+    features: ['Candidate data processing', 'Automated call letter generation', 'Streamlined administration'],
+    tech: ['Web Application', 'Automation'],
+    image: '/images/call-letter-generator.svg',
+    category: 'Full Stack',
+  },
+  {
+    id: 'birthday-wish-email-system',
+    title: 'Birthday Wish Email System',
+    description: 'An automated system for managing employee birthday notifications and sending personalized email wishes.',
+    features: ['Automated birthday notifications', 'Personalized email communication', 'Live application'],
+    tech: ['Web Application', 'Email Automation'],
+    image: '/images/birthday-wish-system.svg',
+    category: 'Full Stack',
+    live: 'https://adminservice-birthday.iimmumbai.ac.in',
+  },
+  {
+    id: 'leave-application-system',
+    title: 'Leave Application System',
+    description: 'A leave management system that calculates balances automatically and prepares vacation leave reports for administrative review.',
+    features: ['Automatic leave balance calculation', 'Vacation leave reports', 'Administrative review'],
+    tech: ['Web Application', 'Reporting', 'Automation'],
+    image: '/images/leave-application-system.svg',
+    category: 'Full Stack',
   },
 ];
 
@@ -136,6 +165,10 @@ export const timeline = [
   },
 ];
 
+export const achievements = timeline
+  .filter((item) => item.title === 'Achievements')
+  .map(({ date, ...item }) => ({ ...item, year: date }));
+
 export const services = [
   {
     title: 'AI & Computer Vision',
@@ -171,3 +204,56 @@ export const testimonials = [
     role: 'Operations Manager',
   },
 ];
+
+export const sectionHeadings = {
+  about: { eyebrow: 'About', title: 'Professional Summary', goalsTitle: 'Career goals' },
+  skills: { eyebrow: 'Skills', title: 'Technical expertise' },
+  projects: { eyebrow: 'Projects', title: 'Projects' },
+  experience: { eyebrow: 'Experience', title: 'Career timeline' },
+  achievements: { eyebrow: 'Recognition', title: 'Achievements' },
+  contact: { eyebrow: 'Contact', title: 'Start your next project' },
+};
+
+export const navLinks = [
+  { label: 'About', target: 'about' },
+  { label: 'Skills', target: 'skills' },
+  { label: 'Projects', target: 'projects' },
+  { label: 'Experience', target: 'experience' },
+  { label: 'Achievements', target: 'achievements' },
+  { label: 'Contact', target: 'contact' },
+];
+
+export const contact = {
+  message: 'I’m available for remote and hybrid opportunities. Send me a message and I’ll respond within 24 hours.',
+  email: 'omkarchandorkar27@gmail.com',
+  phone: '+91 99677 36905',
+  location: 'Mumbai, Maharashtra',
+  emailLabel: 'Email',
+  phoneLabel: 'Phone',
+  locationLabel: 'Location',
+  nameFieldLabel: 'Name',
+  emailFieldLabel: 'Email',
+  messageFieldLabel: 'Message',
+  submitLabel: 'Send message',
+  sendingMessage: 'Sending...',
+  successMessage: 'Message sent successfully.',
+};
+
+export const footer = {
+  copyright: 'Crafted for premium impact.',
+  links: [
+    { label: 'GitHub', href: 'https://github.com/omkar270801', icon: 'Github' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/omkar-chandorkar-4ab81622a', icon: 'Linkedin' },
+    { label: 'Email', href: 'mailto:omkarchandorkar27@gmail.com', icon: 'Mail' },
+  ],
+};
+
+export const portfolioContentDefaults = {
+  hero,
+  about,
+  skillCategories,
+  sectionHeadings,
+  navLinks,
+  contact,
+  footer,
+};

@@ -1,13 +1,16 @@
 import { motion } from 'framer-motion';
 import { BarChart3 } from 'lucide-react';
-import { skillCategories } from '../data/portfolioData';
+import { usePortfolioContent } from './PortfolioContentProvider';
 
 function Skills() {
+  const { content: { skillCategories, sectionHeadings } } = usePortfolioContent();
+  const heading = sectionHeadings.skills;
+
   return (
     <section id="skills" className="mb-24">
       <div className="mb-12">
-        <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Skills</p>
-        <h2 className="mt-3 text-4xl font-semibold text-white">Technical expertise</h2>
+        <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">{heading.eyebrow}</p>
+        <h2 className="mt-3 text-4xl font-semibold text-white">{heading.title}</h2>
       </div>
       <div className="grid gap-6 xl:grid-cols-2">
         {skillCategories.map((category, index) => (

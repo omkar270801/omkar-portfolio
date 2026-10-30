@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { services } from '../data/portfolioData';
+import { usePortfolioContent } from './PortfolioContentProvider';
 import { Globe2, Layers, Server, Sparkles } from 'lucide-react';
 
 const icons = {
@@ -10,11 +10,14 @@ const icons = {
 };
 
 function Services() {
+  const { content: { services, sectionHeadings } } = usePortfolioContent();
+  const heading = sectionHeadings.services;
+
   return (
     <section id="services" className="mb-24">
       <div className="mb-12">
-        <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Services</p>
-        <h2 className="mt-3 text-4xl font-semibold text-white">What I offer</h2>
+        <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">{heading.eyebrow}</p>
+        <h2 className="mt-3 text-4xl font-semibold text-white">{heading.title}</h2>
       </div>
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {services.map((service, index) => {
