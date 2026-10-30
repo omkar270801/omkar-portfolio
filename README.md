@@ -53,19 +53,21 @@ A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Fr
 - Message management routes: `GET /api/messages`, `DELETE /api/messages/:id`
 
 ## Deployment
-### Deploy frontend and backend together to Vercel
-1. Push this repository to GitHub and import it into Vercel. Keep the project root set to the repository root.
-2. Keep the Vercel project root set to the repository root (`./`). The root package installs the frontend build and backend runtime dependencies; it is intentionally not an npm workspace so Vercel builds one project. `vercel.json` disables framework auto-detection, builds the Vite frontend from `client/`, and routes `/api/*` requests through the Express serverless function in `api/[...path].js`.
-3. Add these environment variables in **Vercel → Project → Settings → Environment Variables** for Production (and Preview if needed):
+### Deploy frontend and API as two Vercel projects
+Create two Vercel projects from the same GitHub repository. Set each project's **Root Directory** to its subfolder:
+
+1. **Frontend project:** set Root Directory to `client`, Framework Preset to Vite, Build Command to `npm run build`, and Output Directory to `dist`. Add `VITE_API_URL` as an environment variable with the API project's URL ending in `/api` (for example, `https://your-api.vercel.app/api`).
+2. **API project:** set Root Directory to `server` and Framework Preset to Express (or Auto-detect). Leave Build Command and Output Directory unset. Vercel detects the exported Express app in `index.js`; do not set `dist` as its output directory.
+3. Add these environment variables to the **API project** in **Vercel → Settings → Environment Variables** for Production (and Preview if needed):
    - `MONGO_URI`: a MongoDB Atlas connection string. Allow Vercel to connect to the Atlas cluster in its Network Access settings.
    - `JWT_SECRET`: a long, unique, randomly generated secret.
    - `ADMIN_EMAIL`: the admin account email.
    - `ADMIN_PASSWORD`: a strong, unique admin password.
    - `CLOUDINARY_URL`: required for admin image uploads in production.
-   - `CLIENT_ORIGIN`: optional for the production site origin, for example `https://your-site.vercel.app`.
-4. Deploy. The frontend calls the API at `/api` on the same Vercel domain, so no `VITE_API_URL` is needed for production.
-5. On the first API request, the server connects to MongoDB and creates the admin account if it does not exist. Sign in at `/login`.
-6. Confirm the deployment is responding at `/api/health`.
+   - `CLIENT_ORIGIN`: optional; set this to the frontend project's origin.
+4. Deploy the API, set `VITE_API_URL` on the frontend project to the API deployment URL plus `/api`, then redeploy the frontend so Vite includes that URL in the build.
+5. On the first API request, the server connects to MongoDB and creates the admin account if it does not exist. Sign in at the frontend project's `/login`.
+6. Confirm the API is responding at `/api/health` on the API project's domain.
 
 Never commit real environment values. If an example password was ever used as a real credential, change it before deployment.
 
