@@ -21,11 +21,11 @@ A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Fr
 - Database: MongoDB
 
 ## Setup
-1. Copy `.env.example` to `.env` in the root, `server/.env`, and `client/.env`.
-2. Configure the root `.env` with MongoDB, JWT, admin, and optional Cloudinary settings. Set `VITE_API_URL` in `client/.env` if needed.
-3. Install dependencies:
+1. Copy `.env.example` to `.env` in the repository root.
+2. Set `MONGO_URI`, `JWT_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD`. Cloudinary settings are needed for production image uploads.
+3. Install all workspace dependencies:
    ```bash
-   npm run install:all
+   npm install
    ```
 4. Start both frontend and backend:
    ```bash
@@ -46,17 +46,28 @@ A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Fr
 > ```
 
 ## Backend
-- API base: `http://localhost:5000/api`
+- Local API base: `http://localhost:5001/api`
 - Admin login route: `POST /api/auth/login`
 - Contact route: `POST /api/contact`
 - Project management routes: `GET /api/projects`, `POST /api/projects`, `PUT /api/projects/:id`, `DELETE /api/projects/:id`
 - Message management routes: `GET /api/messages`, `DELETE /api/messages/:id`
 
 ## Deployment
-- Build frontend with `npm run build --prefix client`
-- Serve `client/dist` with a static server or CDN
-- Deploy backend to a Node-compatible host with `server/index.js`
-- Set environment variables on deployment
+### Deploy frontend and backend together to Vercel
+1. Push this repository to GitHub and import it into Vercel. Keep the project root set to the repository root.
+2. Vercel uses `vercel.json` to build the Vite frontend from `client/` and route `/api/*` requests through the Express serverless function in `api/[...path].js`.
+3. Add these environment variables in **Vercel → Project → Settings → Environment Variables** for Production (and Preview if needed):
+   - `MONGO_URI`: a MongoDB Atlas connection string. Allow Vercel to connect to the Atlas cluster in its Network Access settings.
+   - `JWT_SECRET`: a long, unique, randomly generated secret.
+   - `ADMIN_EMAIL`: the admin account email.
+   - `ADMIN_PASSWORD`: a strong, unique admin password.
+   - `CLOUDINARY_URL`: required for admin image uploads in production.
+   - `CLIENT_ORIGIN`: optional for the production site origin, for example `https://your-site.vercel.app`.
+4. Deploy. The frontend calls the API at `/api` on the same Vercel domain, so no `VITE_API_URL` is needed for production.
+5. On the first API request, the server connects to MongoDB and creates the admin account if it does not exist. Sign in at `/login`.
+6. Confirm the deployment is responding at `/api/health`.
+
+Never commit real environment values. If an example password was ever used as a real credential, change it before deployment.
 
 ## Seed data
 From `server`:
@@ -71,6 +82,5 @@ Make sure `server/.env` contains `ADMIN_EMAIL` and `ADMIN_PASSWORD` before runni
 - `server/`: Express backend
 
 ## Notes
-- Use the `Admin Dashboard` route under `/admin` after login.
-- Edit the main portfolio copy, navigation, contact details, services, and footer in the dashboard's Portfolio Content JSON editor. Projects, career timeline, achievements, and messages have dedicated controls.
+- Use the `Admin Dashboard` route under `/admin` after login to edit projects, technical skills, career timeline, achievements, and messages.
 - Use the contact form to store messages in MongoDB.

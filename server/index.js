@@ -49,8 +49,11 @@ app.use(helmet());
 const allowedOrigins = [
   process.env.CLIENT_ORIGIN,
   'http://localhost:5173',
+  'http://localhost:5174',
   'http://127.0.0.1:5173',
+  'http://127.0.0.1:5174',
   'http://omkarchandorkar-portfolio.local',
+  'http://omkarchandorkar-portfolio.local:5174',
   'https://omkar-portfolio-murex.vercel.app',
 ].filter(Boolean);
 app.use(cors({
@@ -93,6 +96,7 @@ app.use(async (req, res, next) => {
 });
 
 app.get('/health', (req, res) => res.json({ ok: true }));
+app.get('/api/health', (req, res) => res.json({ ok: true }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
