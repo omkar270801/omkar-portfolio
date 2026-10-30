@@ -3,9 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
+    "build": "echo \"no build needed\"",
     "seed": "node seed.js"
   },
   "dependencies": {
