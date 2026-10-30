@@ -3,10 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "workspaces": [
-    "client",
-    "server"
-  ],
   "engines": {
     "node": ">=20.19.0"
   },
@@ -15,7 +11,31 @@
     "build": "cd client && vite build",
     "start": "node server/index.js"
   },
+  "dependencies": {
+    "axios": "^1.6.6",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.11.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.19.4",
+    "express-rate-limit": "^7.0.0",
+    "framer-motion": "^11.0.0",
+    "helmet": "^7.1.1",
+    "jsonwebtoken": "^9.0.0",
+    "lucide-react": "^0.467.0",
+    "mongoose": "^7.5.2",
+    "multer": "^2.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.5"
+  },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.6.2",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.1",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^3.4.19",
+    "vite": "^5.4.21"
   }
 }

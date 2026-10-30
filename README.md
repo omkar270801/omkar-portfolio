@@ -23,7 +23,7 @@ A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Fr
 ## Setup
 1. Copy `.env.example` to `.env` in the repository root.
 2. Set `MONGO_URI`, `JWT_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD`. Cloudinary settings are needed for production image uploads.
-3. Install all workspace dependencies:
+3. Install dependencies:
    ```bash
    npm install
    ```
@@ -55,7 +55,7 @@ A modern full-stack developer portfolio built with React, Vite, Tailwind CSS, Fr
 ## Deployment
 ### Deploy frontend and backend together to Vercel
 1. Push this repository to GitHub and import it into Vercel. Keep the project root set to the repository root.
-2. Vercel uses `vercel.json` to build the Vite frontend from `client/` and route `/api/*` requests through the Express serverless function in `api/[...path].js`.
+2. Keep the Vercel project root set to the repository root (`./`). The root package installs the frontend build and backend runtime dependencies; it is intentionally not an npm workspace so Vercel builds one project. `vercel.json` disables framework auto-detection, builds the Vite frontend from `client/`, and routes `/api/*` requests through the Express serverless function in `api/[...path].js`.
 3. Add these environment variables in **Vercel → Project → Settings → Environment Variables** for Production (and Preview if needed):
    - `MONGO_URI`: a MongoDB Atlas connection string. Allow Vercel to connect to the Atlas cluster in its Network Access settings.
    - `JWT_SECRET`: a long, unique, randomly generated secret.
