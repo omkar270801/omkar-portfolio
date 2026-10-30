@@ -2,7 +2,6 @@ import express from 'express';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
 import cors from 'cors';
-import mongoose from 'mongoose';
 import rateLimit from 'express-rate-limit';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -24,6 +23,9 @@ dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 5001;
+
+// Vercel sits behind a proxy; needed for rate limiting to see real IPs
+app.set('trust proxy', 1);
 
 const ensureAdminUser = async () => {
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -65,32 +67,52 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(rateLimit({ windowMs: 1000 * 60, max: 120 }));
 
+// Connect to DB once per cold start (before routes handle requests)
+let ready;
+const init = () => {
+  if (!ready) {
+    ready = (async () => {
+      await connectDB();
+      await ensureAdminUser();
+    })().catch((err) => {
+      ready = null; // allow retry on next request
+      throw err;
+    });
+  }
+  return ready;
+};
+
+app.use(async (req, res, next) => {
+  try {
+    await init();
+    next();
+  } catch (err) {
+    console.error('Init failed:', err);
+    res.status(500).json({ message: 'Server initialization failed' });
+  }
+});
+
+app.get('/health', (req, res) => res.json({ ok: true }));
+
 app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/content', contentRoutes);
-app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
-  setHeaders: (res) => res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin'),
-}));
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/dist')));
-  app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')));
-}
 
 app.use(errorHandler);
 
-const startServer = async () => {
-  await connectDB();
-  await ensureAdminUser();
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-};
+// Local development only
+if (!process.env.VERCEL) {
+  init()
+    .then(() => {
+      app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    });
+}
 
-startServer().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+export default app;
